@@ -1,23 +1,23 @@
-import { FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILED } from './userTypes';
+import { FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILED } from './UserTypes';
 
-const _FETCH_USER_REQUEST = () => {
+const _fetch_user_request = () => {
 	return {
 		type: FETCH_USER_REQUEST
 	}
 }
 
-const _FETCH_USER_SUCCESS = users => {
+const _fetch_user_success = data => {
 	return {
 		type: FETCH_USER_SUCCESS,
-		data: users
+		data: data
 	}
 }
 
-const _FETCH_USER_FAILED = users => {
+const _fetch_user_failed = data => {
 	return {
 		type: FETCH_USER_FAILED,
-		data: users
+		data: data
 	}
 }
 
-export { _FETCH_USER_REQUEST, _FETCH_USER_SUCCESS, _FETCH_USER_FAILED }
+export { _fetch_user_request, _fetch_user_success, _fetch_user_failed }

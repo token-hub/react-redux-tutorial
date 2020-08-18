@@ -1,32 +1,32 @@
 import React from 'react';
-import { buy_cake } from '../redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { buyCake } from '../redux';
+import { connect } from 'react-redux';
 
-const CakeComponent = ({ numCakes, buy_cake }) => {
+const CakeComponent = ({ numCakes, buyCake }) => {
 	return(
 		<div>
-			<p>Number of Cakes - {numCakes}</p>
-			<button onClick={buy_cake}>Buy Cakes</button>
+			<p> Number of Cakes - {numCakes}</p>
+			<button onClick={buyCake}>Buy Cake</button>
 		</div>
 	)
 }
 
-const reduxStateToProps = state => {
+const mapStateToProps = state => {
 	return {
 		numCakes: state.cakeReducer.numCakes
 	}
 }
 
-const reduxDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
 	return {
-		buy_cake: () => dispatch(buy_cake())
+		buyCake: () => dispatch( buyCake() )
 	}
 }
 
 CakeComponent.propTypes = {
 	numCakes: PropTypes.number.isRequired,
-	buy_cake: PropTypes.func.isRequired
+	buyCake: PropTypes.func.isRequired
 }
 
-export default connect(reduxStateToProps, reduxDispatchToProps)(CakeComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(CakeComponent)

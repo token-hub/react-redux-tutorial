@@ -1,13 +1,12 @@
 import { createStore } from 'redux';
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import cakeReducer from './cake/cakeReducer';
-import iceCreamReducer from './iceCream/iceCreamReducer';
+import IceCreamReducer from './iceCream/IceCreamReducer';
 
-// param {}
 const rootReducer = combineReducers({
 	cakeReducer: cakeReducer,
-	iceCreamReducer: iceCreamReducer
-})
+	IceCreamReducer: IceCreamReducer
+});
 
 // param (reducer, middleware)
 const store = createStore(rootReducer);

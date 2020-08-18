@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
+import { UserDispatch } from '../redux';
 import { connect } from 'react-redux';
-import { userDispatch }  from '../redux';
 import PropTypes from 'prop-types';
 
-const UserComponent = ({ loading, data, error, fetchUsers }) => {
-	
-	useEffect( () => {
-		fetchUsers();
-	}, [] )
+const UserComponent = ({ loading, data, error, fetchUser }) => {
 
+	useEffect( () => fetchUser() , [] );
+	console.log(error);
 	return(
 		<div>
-			<p>Users ID</p>
-			{
-				data.length > 0 && data.map( id => (
-					<li key={id}> {id} </li>
-				) )
-			}
-			{
-				error !== '' && <p> {error} </p>
-			}
+			<p>users</p>
+			<ul>
+				{
+					data.length > 0 && data.map(item => (
+						<li>{item}</li>
+					))
+				}
+				{
+					error !== '' && <li>{error}</li>
+				}
+			</ul>
 		</div>
 	)
 }
@@ -34,16 +34,15 @@ const reduxStateToProps = state => {
 
 const reduxDispatchToProps = dispatch => {
 	return {
-		fetchUsers: () => dispatch( userDispatch() )
+		fetchUser: () => dispatch( UserDispatch() )
 	}
 }
 
-// prop types
 UserComponent.propTypes = {
-	loading: PropTypes.bool.isRequired,
-	data: PropTypes.array.isRequired,
-	error: PropTypes.string.isRequired,
-	fetchUsers: PropTypes.func.isRequired
+	loading : PropTypes.bool.isRequired,
+	data : PropTypes.array.isRequired,
+	error : PropTypes.string.isRequired,
+	fetchUser : PropTypes.func.isRequired
 }
 
 export default connect(reduxStateToProps, reduxDispatchToProps)(UserComponent)

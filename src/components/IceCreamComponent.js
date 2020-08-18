@@ -1,32 +1,32 @@
 import React from 'react';
-import { buy_ice_cream } from '../redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { buyIceCream } from '../redux';
+import { connect } from 'react-redux';
 
-const IceCreamComponent = ({ numIceCream, buy_ice_cream }) => {
+const IceCreamComponent = ({ numberOfIceCream, buyIceCream }) => {
 	return(
 		<div>
-			<p>Number of IceCream - {numIceCream}</p>
-			<button onClick={buy_ice_cream}> Buy IceCream </button>
+			<p>Number of IceCream - {numberOfIceCream}</p>
+			<button onClick={buyIceCream}>Buy IceCream</button>
 		</div>
 	)
 }
 
 const reduxStateToProps = state => {
 	return {
-		numIceCream: state.iceCreamReducer.numIceCream
+		numberOfIceCream: state.IceCreamReducer.numberOfIceCream
 	}
 }
 
 const reduxDispatchToProps = dispatch => {
 	return {
-		buy_ice_cream: () => dispatch(buy_ice_cream())
+		buyIceCream: () => dispatch( buyIceCream() )
 	}
 }
 
 IceCreamComponent.propTypes = {
-	numIceCream: PropTypes.number.isRequired,
-	buy_ice_cream: PropTypes.func.isRequired
+	numberOfIceCream: PropTypes.number.isRequired,
+	buyIceCream: PropTypes.func.isRequired
 }
 
 export default connect(reduxStateToProps, reduxDispatchToProps)(IceCreamComponent)

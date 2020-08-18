@@ -1,4 +1,4 @@
-import { FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILED } from './userTypes';
+import { FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILED } from './UserTypes';
 
 const initialState = {
 	loading: false,
@@ -6,7 +6,7 @@ const initialState = {
 	error: ''
 }
 
-const userReducer = (state = initialState, action) => {
+const UserReducer = (state = initialState, action) => {
 	switch(action.type) {
 		case FETCH_USER_REQUEST:
 			return {
@@ -21,7 +21,7 @@ const userReducer = (state = initialState, action) => {
 				error: ''
 			}
 
-		case FETCH_USER_FAILED :
+		case FETCH_USER_FAILED:
 			return {
 				loading: false,
 				data: [],
@@ -29,8 +29,8 @@ const userReducer = (state = initialState, action) => {
 			}
 
 		default:
-			return state;
+			return state
 	}
 }
 
-export default userReducer
+export default UserReducer
