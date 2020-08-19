@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
 import store from './redux/store';
-import AsyncStore from './redux/AsyncStore';
 import { Provider } from 'react-redux';
 import CakeComponent from './components/CakeComponent';
-import NewCakeComponent from './components/NewCakeComponent';
-import HooksCakeComponent from './components/HooksCakeComponent';
-import IceCreamComponent from './components/IceCreamComponent';
 import UserComponent from './components/UserComponent';
+import CakeComponent2 from './components/CakeComponent2';
+import ItemComponent from './components/ItemComponent';
+import IceCreamComponent from './components/IceCreamComponent';
 
 
 function App() {
@@ -15,12 +14,10 @@ function App() {
     <div className="App">
         <Provider store={store}>
             <CakeComponent /> <hr/>
-            <HooksCakeComponent /> <hr/>
-            <NewCakeComponent/> <hr/>
+            <CakeComponent2 /> <hr/>
             <IceCreamComponent /> <hr/>
-        </Provider>
-        <Provider store={AsyncStore}>
-            <UserComponent />
+            <ItemComponent category='cake' cake /> <hr/>
+            <UserComponent /> <hr/>
         </Provider>
     </div>
   )

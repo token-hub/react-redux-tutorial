@@ -1,32 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { buyIceCream } from '../redux';
-import { connect } from 'react-redux';
+import { buyIceCream } from '../redux'
+import { useSelector, useDispatch } from 'react-redux';
 
-const IceCreamComponent = ({ numberOfIceCream, buyIceCream }) => {
+const IceCreamComponent = () => {
+
+	const iceCreamCount =  useSelector( state => state.IceCreamReducer.IceCreamCount );
+	const dispatch = useDispatch();
+
 	return(
 		<div>
-			<p>Number of IceCream - {numberOfIceCream}</p>
-			<button onClick={buyIceCream}>Buy IceCream</button>
+			<p>Number of Ice Cream - {iceCreamCount}</p>
+			<button onClick={ () => dispatch( buyIceCream() ) }> Buy Ice Cream </button>
 		</div>
 	)
 }
 
-const reduxStateToProps = state => {
-	return {
-		numberOfIceCream: state.IceCreamReducer.numberOfIceCream
-	}
-}
-
-const reduxDispatchToProps = dispatch => {
-	return {
-		buyIceCream: () => dispatch( buyIceCream() )
-	}
-}
-
-IceCreamComponent.propTypes = {
-	numberOfIceCream: PropTypes.number.isRequired,
-	buyIceCream: PropTypes.func.isRequired
-}
-
-export default connect(reduxStateToProps, reduxDispatchToProps)(IceCreamComponent)
+export default IceCreamComponent

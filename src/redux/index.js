@@ -1,3 +1,3 @@
-export { buyCake } from './cake/cakeActions';
-export { buyIceCream } from './iceCream/iceCreamActions';
-export { UserDispatch } from './user/UserDispatch';
+export { buyCake } from './cake/CakeActions';
+export { buyIceCream } from './iceCream/IceCreamActions';
+export * from './user/UserAction';

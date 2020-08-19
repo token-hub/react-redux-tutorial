@@ -1,16 +1,22 @@
 import axios from 'axios';
-import { _fetch_user_request, _fetch_user_success, _fetch_user_failed } from './UserActions';
+
+import { 
+	fetchUserRequest, 
+	fetchUserSuccess,
+	fetchUserFailed
+} from './UserAction';
 
 export const UserDispatch = () => {
 	return dispatch => {
-		dispatch(_fetch_user_request());
+		dispatch(fetchUserRequest());
 
-		axios.get('https://jsonplaceholder.typi2code.com/users')
+		axios.get('https://jsonplaceholder.typicode.com/users')
 		.then( response => {
-			dispatch(_fetch_user_success(response.data.map(user => user.id)));
+			dispatch(fetchUserSuccess(response.data.map(user => user.id)));
 		} )
-		.then( error => {
-			dispatch(_fetch_user_failed(error));
+		.catch( error => {
+			dispatch(fetchUserFailed(error.message));
 		} )
+
 	}
 }

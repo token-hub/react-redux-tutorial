@@ -1,14 +1,18 @@
-import { createStore } from 'redux';
-import { combineReducers } from 'redux';
-import cakeReducer from './cake/cakeReducer';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+import CakeReducer from './cake/CakeReducer';
 import IceCreamReducer from './iceCream/IceCreamReducer';
+import UserReducer from './user/UserReducer';
+import ReduxThunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-	cakeReducer: cakeReducer,
-	IceCreamReducer: IceCreamReducer
-});
+	CakeReducer: CakeReducer,
+	IceCreamReducer: IceCreamReducer,
+	UserReducer: UserReducer
+})
 
 // param (reducer, middleware)
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(ReduxThunk)) );
 
 export default store

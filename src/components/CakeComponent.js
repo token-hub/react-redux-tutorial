@@ -1,32 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { buyCake } from '../redux';
-import { connect } from 'react-redux';
+import { buyCake } from '../redux'
+import { useSelector, useDispatch } from 'react-redux';
 
-const CakeComponent = ({ numCakes, buyCake }) => {
+const CakeComponent = () => {
+
+	const numberOfCakes = useSelector( state => state.CakeReducer.numberOfCakes );
+	const dispatch = useDispatch();
+	
+	const clickHandler = () => {
+		dispatch( buyCake() );
+	}
+
 	return(
 		<div>
-			<p> Number of Cakes - {numCakes}</p>
-			<button onClick={buyCake}>Buy Cake</button>
+			<p>Number of Cakes - {numberOfCakes}</p>
+			<button onClick={clickHandler} > Buy Cakes </button>
 		</div>
 	)
 }
 
-const mapStateToProps = state => {
-	return {
-		numCakes: state.cakeReducer.numCakes
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		buyCake: () => dispatch( buyCake() )
-	}
-}
-
-CakeComponent.propTypes = {
-	numCakes: PropTypes.number.isRequired,
-	buyCake: PropTypes.func.isRequired
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CakeComponent)
+export default CakeComponent
