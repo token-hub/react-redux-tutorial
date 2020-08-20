@@ -1,6 +1,6 @@
-import {
+import { 
 	FETCH_USER_REQUEST,
-	FETCH_USER_SUCCESS,
+	FETCH_USER_SUCCESS, 
 	FETCH_USER_FAILED
 } from './UserTypes';
 
@@ -32,7 +32,7 @@ const UserReducer = (state = initialState, action) => {
 				error: action.payload
 			}
 
-		default:
+		default: 
 			return state;
 	}
 }

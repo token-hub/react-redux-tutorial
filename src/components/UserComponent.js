@@ -1,50 +1,41 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { UserDispatch } from '../redux';
+import React, {useEffect} from 'react';
+import { fetchUsers } from '../redux';
+import { connect } from 'react-redux';
 
-/* import { connect } from 'react-redux';
-const UserComponent ({ userData, dispatch }) => {
-const { loading, data, error } = userData; */
+const UserComponent = ({ userState, dispatch }) => {
 
-const UserComponent = () => {
-	const { loading, data, error } = useSelector( state => state.UserReducer);
-	const dispatch = useDispatch();
+	const { loading, data, error } = userState;
 
 	useEffect( () => {
-		dispatch( UserDispatch() )
+		dispatch();
 	}, [] )
 
 	return(
 		<div>
-			<p>Users</p>
+			<p> Users </p>
 			<ul>
 				{
-					data.length > 0 && data.map(user => (
-						<li key={user}>{user}</li>
-					))
+					data.length > 0 && data.map( user => (
+						<li>{ user }</li>
+					) )
 				}
 				{
-					error !== '' && <li>{error}</li>
+					error !== '' && <li>{ error }</li>
 				}
 			</ul>
 		</div>
 	)
 }
 
-/*
 const mapStateToProps = state => {
 	return {
-		userData: state.UserReducer
+		userState: state.UserReducer
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		dispatch: () => dispatch( UserDispatch() )
+		dispatch: () => dispatch( fetchUsers() )
 	}
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(UserComponent)
- */
-
-export default UserComponent

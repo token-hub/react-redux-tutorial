@@ -1,18 +1,26 @@
 import React from 'react';
-import { buyIceCream } from '../redux'
-import { useSelector, useDispatch } from 'react-redux';
+import { buyIceCream } from '../redux';
+import { connect } from 'react-redux';
 
-const IceCreamComponent = () => {
-
-	const iceCreamCount =  useSelector( state => state.IceCreamReducer.IceCreamCount );
-	const dispatch = useDispatch();
-
+const IceCreamComponent = ({ iceCreamCount, buyIceCream }) => {
 	return(
 		<div>
-			<p>Number of Ice Cream - {iceCreamCount}</p>
-			<button onClick={ () => dispatch( buyIceCream() ) }> Buy Ice Cream </button>
+			<p> Ice Cream Count: {iceCreamCount}</p>
+			<button onClick={ () => { buyIceCream() } }> Buy Ice cream </button>
 		</div>
 	)
 }
 
-export default IceCreamComponent
+const mapStateToProps = state => {
+	return {
+		iceCreamCount: state.IceCreamReducer.iceCreamCount
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		buyIceCream: () => dispatch( buyIceCream() )
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IceCreamComponent)

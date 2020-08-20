@@ -1,34 +1,35 @@
 import React from 'react';
-import { buyCake, buyIceCream } from '../redux';
 import { connect } from 'react-redux';
+import { buyCake, buyIceCream } from '../redux';
 
-const ItemComponent = ({ count, dispatch, category }) => {
+const ItemComponent = ({ category = 'cake', item, dispatch }) => {
 	return(
 		<div>
-			<p>Number of {category} - {count}</p>
-			<button onClick={dispatch}> buy {category} </button>
+			<p> count of {category} - {item}</p>
+			<button onClick={dispatch} >Buy {category}</button>
 		</div>
 	)
 }
 
 const mapStateToProps = (state, ownProps) => {
 	const item = ownProps.cake
-		? state.CakeReducer.numberOfCakes
-		: state.IceCreamReducer.IceCreamCount
+		? state.CakeReducer.cakeCount
+		: state.IceCreamReducer.iceCreamCount;
 
 	return {
-		count: item
+		item: item
 	}
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-	const item = ownProps.cake
+	const dispatcher = ownProps.cake 
 		? () => dispatch( buyCake() )
 		: () => dispatch( buyIceCream() )
 
 	return {
-		dispatch: item
+		dispatch: dispatcher
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemComponent)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemComponent);
